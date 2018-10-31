@@ -1,0 +1,19 @@
+package qualityworks.sample.android;
+
+import org.testng.annotations.BeforeTest;
+import org.testng.annotations.Test;
+
+import qualityworks.sample.android.util.AppiumAndroidTest;
+
+
+public class QualityWorksAndroidTest extends AppiumAndroidTest {
+
+	@BeforeTest
+	
+    @Test
+    public void checkHomeLabel() throws Exception {
+        home.loaded();
+        
+        
+    }
+}

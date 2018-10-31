@@ -1,0 +1,41 @@
+package amazon.assignment.flow;
+
+import java.io.IOException;
+
+import amazon.assignment.pages.AmazonHomePage;
+import amazon.assignment.pages.KindlePaperWhiteHomePage;
+import amazon.assignment.pages.ShopByCategoryPage;
+import io.appium.java_client.android.AndroidDriver;
+
+public class KindleFlow {
+	private AndroidDriver Driver;
+	private String testName = "";
+
+	public KindleFlow(AndroidDriver Driver, String testName) {
+		this.Driver = Driver;
+		this.testName = testName;
+	}
+	
+	/**
+	 * Method for Kindle PaperWhite add to cart flow 
+	 * 
+	 * @throws IOException
+	 * @throws InterruptedException 
+	 */
+	public void kindlePaperWhiteFlow() throws IOException, InterruptedException{
+		AmazonHomePage homepage=new AmazonHomePage(Driver, testName);
+		homepage.clickShopByDepartment();
+		ShopByCategoryPage department=new ShopByCategoryPage(Driver, testName);
+		department.clickKindle();
+		AmazonHomePage kindlePage=new AmazonHomePage(Driver, testName);
+		kindlePage.clickKindlePaperWhite();
+		KindlePaperWhiteHomePage kindlePaperWhitePage=new KindlePaperWhiteHomePage(Driver, testName);
+		kindlePaperWhitePage.selectQuantity().clickAddToCart().clickClose();
+		CartVerifyPage cart=new CartVerifyPage(Driver, testName);
+		cart.clickProceedToCheckout();
+		ShopByCategoryPage login=new ShopByCategoryPage(Driver, testName);
+		login.verifySigninText().verifySigninBox();
+	}
+
+
+}

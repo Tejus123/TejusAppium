@@ -1,0 +1,38 @@
+package amazon.assignment.pages;
+
+import java.io.IOException;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import amazon.assignment.util.HelperPage;
+import amazon.assignment.util.MobileBasePage;
+import amazon.assignment.util.WebBasePage;
+
+public class ShopByCategoryPage extends MobileBasePage{
+	private WebDriver webDriver=null;
+	private String testName="";
+	private final By KINDLE=By.xpath("//a[text()='Kindle']");
+	public ShopByCategoryPage(WebDriver webDriver, String testName) {
+		this.webDriver=webDriver;
+		this.testName=testName;
+		waitForPageLoad();
+	}
+	
+	/**
+	 * method to click Kindle
+	 * @return
+	 * @throws IOException
+	 */
+	public ShopByCategoryPage clickKindle() throws IOException {
+		webDriver.findElement(KINDLE).click();
+		return this;
+	}
+
+	@Override
+	public void waitForPageLoad() {
+		HelperPage.waitForPageLoad(KINDLE);
+	}	
+}

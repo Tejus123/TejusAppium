@@ -1,0 +1,3 @@
+Environment=TEST
+TimeOut=30
+Browser=IE
